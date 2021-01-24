@@ -24,12 +24,12 @@
 		crossorigin="anonymous"></script>
 </head>
 
-<body onload="init()">
+<body>
 	<div class="wrapper">
 		<!-- Sidebar  -->
 		<nav id="sidebar">
 			<div class="sidebar-header">
-				<h3>Navbar</h3>
+				<h3>Smart Home</h3>
 			</div>
 			<ul class="list-unstyled components">
 				<p id="welcome"></p>
@@ -78,6 +78,7 @@
 				<li>
 					<a href="#">Contact</a>
 				</li>
+				<button class="btn btn-outline-secondary" style="color: white;" onclick="logout()">Sign Out</button>
 			</ul>
 		</nav>
 		<!-- Page Content  -->
@@ -96,18 +97,38 @@
 				</div>
 			</nav>
 			<h2>Statistic</h2>
-			<div class="mid">
+			<div class="row ml-lg-1 mb-sm-3">
 				<form id="dateForm" action="javascript:submitDateForm()">
 					<label for="birthday">Date* </label>
 					<input type="date" class="btn-outline-info btn" name="date" required>
 					<input type="submit" class="btn btn-primary" value="Submit">
 				</form>
 			</div>
+			<div class="row">
+				<div class="col-md-5">
+					<div class="card" style="width: 18rem;">
+						<ul class="list-group list-group-flush">
+						  <li class="list-group-item">Time: <span id="currDate"></span></li>
+						  <li class="list-group-item">Temperature: <span id="currTemp"></span> </li>
+						  <li class="list-group-item">Humidity: <span id="currHumi"></span></li>
+						</ul>
+					  </div>
+				</div>
+				<div class="col-md-5">
+					<div class="card" style="width: 18rem;">
+						<ul class="list-group list-group-flush">
+						  <li class="list-group-item">Date: <span id="chosenDate"></span></li>
+						  <li class="list-group-item">Average Temperature: <span id="averageTemp"></span> </li>
+						  <li class="list-group-item">Average Humidity: <span id="averageHumi"></span></li>
+						</ul>
+					  </div>
+				</div>
+			</div>
 			<div class="line"></div>
 			<h2>Living Room</h2>
 			<div class="mid">
 				<label class="rocker">
-					<input type="checkbox" id="toggleLight" checked onclick="toggleLight()">
+					<input type="checkbox" id="toggleLight" unchecked onclick="toggleLight()">
 					<span class="switch-left">On</span>
 					<span class="switch-right">Off</span>
 				</label>
@@ -116,7 +137,7 @@
 			<h2>Master Bedroom</h2>
 			<div class="mid">
 				<label class="rocker">
-					<input type="checkbox" id="toggleLight" checked onclick="toggleLight()">
+					<input type="checkbox" id="toggleLight" unchecked onclick="toggleLight()">
 					<span class="switch-left">On</span>
 					<span class="switch-right">Off</span>
 				</label>
@@ -125,7 +146,7 @@
 			<h2>Bedroom</h2>
 			<div class="mid">
 				<label class="rocker">
-					<input type="checkbox" id="toggleLight" checked onclick="toggleLight()">
+					<input type="checkbox" id="toggleLight" unchecked onclick="toggleLight()">
 					<span class="switch-left">On</span>
 					<span class="switch-right">Off</span>
 				</label>
@@ -134,7 +155,7 @@
 			<h2>Play Ground</h2>
 			<div class="mid">
 				<label class="rocker">
-					<input type="checkbox" id="toggleLight" checked onclick="toggleLight()">
+					<input type="checkbox" id="toggleLight" unchecked onclick="toggleLight()">
 					<span class="switch-left">On</span>
 					<span class="switch-right">Off</span>
 				</label>
@@ -163,5 +184,4 @@
 			});
 		</script>
 </body>
-
 </html>

@@ -1,5 +1,4 @@
 const baseUrl = "https://iot-demo1.herokuapp.com";
-// const baseUrl = "http://127.0.0.1:3001"
 const submitLoginForm = () => {
   const form = document.getElementById("loginForm");
   let data = {
@@ -17,11 +16,10 @@ const submitLoginForm = () => {
   fetch(baseUrl + "/users/signin", obj)
     .then((response) => response.json())
     .then((response) => {
-      if (response.success) {
+      if (response.success === true) {
         setCookie("isLogin", true);
         setCookie("token", response.result.accessToken);
         setCookie("email", response.result.email);
-        alert(response.message);
         window.location.replace("http://127.0.0.1:5500");
       } else alert(response.message);
     });
@@ -57,7 +55,6 @@ const submitDateForm = () => {
     token: getCookie("token"),
     date: convertDate(form.date.value),
   };
-  debugger;
   var obj = {
     method: "POST",
     mode: "cors",
