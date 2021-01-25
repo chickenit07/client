@@ -14,7 +14,49 @@ window.onload = () => {
   var min = today.getMinutes();
   today = hour + ":" + min + " - " + +dd + "/" + mm + "/" + yyyy;
   document.getElementById("currDate").innerHTML = today;
+
+  let data = {
+    email: getCookie("email"),
+    token: getCookie("token"),
+  };
+  var obj = {
+    crossDomain: true,
+    method: "POST",
+    mode: "cors",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  };
+  
+  fetch(baseUrl + "/sensors/data/current", obj)
+    .then((response) => response.json())
+    .then((response) => {
+      if (response.data.status === 1 && response.status === 1)
+        document.getElementById("currTemp").innerHTML =
+          response.data.temperature;
+      document.getElementById("currHumi").innerHTML = response.data.humidity;
+    });
+
+//   setInterval(() => {
+//     $.ajax({
+//       type: "POST",
+//       url: baseUrl + "/sensors/data/current",
+// 	  data: obj.body,
+// 	  headers: {
+// 		"Content-Type": 'application/json'
+// 	  },
+//     //   success: handleData,
+//       dataType: 'application/json',
+//     }).done(function(data){
+// 		console.log(1);
+// 	});
+//   }, 3000);
 };
+
+const handleData = (data, a, b) => {
+	console.log(1)
+}
 
 const logout = () => {
   delete_cookie("isLogin");

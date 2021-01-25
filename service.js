@@ -1,4 +1,5 @@
 const baseUrl = "https://iot-demo1.herokuapp.com";
+
 const submitLoginForm = () => {
   const form = document.getElementById("loginForm");
   let data = {
@@ -66,8 +67,31 @@ const submitDateForm = () => {
   fetch(baseUrl + "/sensors/data/average", obj)
     .then((response) => response.json())
     .then((response) => {
-		debugger
-	});
+      if (response.status !== 1) {
+        return;
+      }
+      if (response.data.status === 1) {
+        document.getElementById("chosenDate").innerHTML = convertDate(
+          form.date.value
+        );
+        document.getElementById(
+          "averageTemp"
+        ).innerHTML = response.data.average_temperature.toFixed(2);
+        document.getElementById(
+          "averageHumi"
+        ).innerHTML = response.data.average_humidity.toFixed(2);
+      } else {
+        document.getElementById("chosenDate").innerHTML = convertDate(
+          form.date.value
+        );
+        document.getElementById(
+          "averageTemp"
+        ).innerHTML = "unknown";
+        document.getElementById(
+          "averageHumi"
+        ).innerHTML = "unknown";
+      }
+    });
 };
 
 function convertDate(inputFormat) {
@@ -101,9 +125,7 @@ const turnOnLight = () => {
   };
   fetch(baseUrl + "/sensors/handle/led/on", obj)
     .then((response) => response.json())
-    .then((response) => {
-      debugger;
-    });
+    .then((response) => {});
 };
 const turnOffLight = () => {
   let data = {
@@ -121,9 +143,7 @@ const turnOffLight = () => {
   };
   fetch(baseUrl + "/sensors/handle/led/off", obj)
     .then((response) => response.json())
-    .then((response) => {
-      debugger;
-    });
+    .then((response) => {});
 };
 
 function setCookie(cname, cvalue) {
